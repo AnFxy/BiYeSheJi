@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    tools:context=".NewsActivity">
+    <fragment
+        android:layout_weight="1"
+        android:id="@+id/frag_left"
+        android:layout_width="0sp"
+        android:layout_height="match_parent"
+        android:name="com.ilikexy.biyesheji.fragment.NewsTitleFragment"/>
+    <FrameLayout
+        android:id="@+id/content_fl"
+        android:layout_weight="3"
+        android:layout_width="0sp"
+        android:layout_height="match_parent">
+        <fragment
+            android:id="@+id/frag_right"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.ilikexy.biyesheji.fragment.NewsContentFragment"/>
+    </FrameLayout>
+</LinearLayout>

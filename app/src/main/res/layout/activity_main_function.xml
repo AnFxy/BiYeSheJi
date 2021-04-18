@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".MainFunctionActivity">
+    <!--标题栏-->
+    <include
+        layout="@layout/item_title_mainfa"
+        />
+    <!--分割线-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.2sp"
+        android:background="#ededed"></View>
+    <!--Fragment内容-->
+    <FrameLayout
+        android:id="@+id/myfragment_mainfa"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0sp"/>
+
+    <!--分割线-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.2sp"
+        android:background="#ededed"></View>
+    <include
+        layout="@layout/item_bbutton_mainfa"
+        />
+</LinearLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40sp"
+    android:orientation="horizontal"
+    android:background="#ededed">
+    <TextView
+        android:id="@+id/text_title_mainfa"
+        android:layout_weight="1"
+        android:layout_width="0sp"
+        android:layout_height="40sp"
+        android:text="资讯"
+        android:typeface="monospace"
+        android:textColor="#000000"
+        android:paddingLeft="8sp"
+        android:gravity="center|left"
+        android:textSize="20sp"
+        ></TextView>
+    <ImageView
+        android:id="@+id/image_menu_mainfa"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:layout_gravity="center"
+        android:layout_marginRight="10sp"
+        android:src="@drawable/menu"/>
+</LinearLayout>

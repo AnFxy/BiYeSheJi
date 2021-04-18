@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--王者营地-->
+    <declare-styleable name="WangZheLoad">
+        <attr name="leftSmallRectColor" format="color"></attr>
+        <attr name="rightSmallRectColor" format="color"></attr>
+        <attr name="smallRectSize" format="dimension"></attr>
+        <attr name="bigRectSize" format="dimension"></attr>
+        <attr name="bigRectColor" format="color"></attr>
+    </declare-styleable>
+    <!--圆角方形图片-->
+    <declare-styleable name="RoundedSquare">
+        <attr name="roundedRadius" format="dimension"></attr>
+    </declare-styleable>
+    <!--圆形图片-->
+    <declare-styleable name="RoundPicture">
+        <attr name="borderColor" format="color"></attr><!--边框颜色-->
+        <attr name="borderSize" format="dimension"></attr><!--边框大小-->
+    </declare-styleable>
+    <!--王者标题栏背景框，一个圆角矩形，加一个倒过来的小直角三角形-->
+    <declare-styleable name="LoryMessageTitle">
+        <attr name="roudedRadius" format="dimension"></attr><!--矩形圆角半径径-->
+        <attr name="triangleLengthHalf" format="dimension"></attr><!--直角三角形对角线长度一半-->
+        <attr name="rectHeight" format="dimension"></attr><!--矩形高度-->
+        <attr name="colorAll" format="color"></attr><!--控件颜色-->
+        <attr name="changeColor" format="color"></attr><!--文字改变后的颜色-->
+        <attr name="orignColor" format="color"></attr><!--文字原颜色-->
+        <attr name="changeDirection">   <!--控件变化方向-->
+            <enum name="LEFT_TO_RIGHT" value="1"></enum>
+            <enum name="RIGHT_TO_LEFT" value="2"></enum>
+        </attr>
+    </declare-styleable>
+</resources>

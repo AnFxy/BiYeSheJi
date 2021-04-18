@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="45sp"
+    android:orientation="horizontal"
+    android:id="@+id/buttomChange_linear"
+    android:background="@drawable/r1">
+    <TextView
+        android:id="@+id/text_message_mainactivity"
+        android:layout_weight="1"
+        android:layout_width="0sp"
+        android:layout_height="match_parent"
+        ></TextView>
+    <TextView
+        android:id="@+id/text_video_mainactivity"
+        android:layout_weight="1"
+        android:layout_width="0sp"
+        android:layout_height="match_parent"
+        ></TextView>
+    <TextView
+        android:id="@+id/text_found_mainactivity"
+        android:layout_weight="1"
+        android:layout_width="0sp"
+        android:layout_height="match_parent"
+        ></TextView>
+    <TextView
+        android:id="@+id/text_question_mainactivity"
+        android:layout_weight="1"
+        android:layout_width="0sp"
+        android:layout_height="match_parent"
+        ></TextView>
+    <TextView
+        android:id="@+id/text_set_mainactivity"
+        android:layout_weight="1"
+        android:layout_width="0sp"
+        android:layout_height="match_parent"
+        ></TextView>
+</LinearLayout>
