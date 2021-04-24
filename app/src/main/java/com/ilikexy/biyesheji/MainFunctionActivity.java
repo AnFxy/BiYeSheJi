@@ -16,6 +16,7 @@ import com.ilikexy.biyesheji.baseactivity.BaseActivity;
 import com.ilikexy.biyesheji.constant.ConstantClass;
 import com.ilikexy.biyesheji.constant.ToastAction;
 import com.ilikexy.biyesheji.entity.ArticleList;
+import com.ilikexy.biyesheji.entity.QuestionItem;
 import com.ilikexy.biyesheji.entity.ReceiveArticleList;
 import com.ilikexy.biyesheji.fragment.FoundFragment;
 import com.ilikexy.biyesheji.fragment.MessageFragment;
@@ -39,13 +40,15 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
     //底部按钮控件声明
     private LinearLayout mLinearLayout;
     private TextView mMessageTextView,mVideosTextView,mFoundTextView,mQuestionTextView,mSetTextView;
+    private TextView mTextTitle;
     //FragmentManager, FragmentTransation
     private FragmentManager mManager;
     private FragmentTransaction mTransaction;
     //资讯fragment数据
     List<String> listofstring;
-
     List<ReceiveArticleList> receivearticlelist;
+    //问题question数据
+    List<QuestionItem> listofquestion;
     //提高fragment切换的性能
     MessageFragment messFrag;
     VideosFragment videosFrag;
@@ -60,7 +63,12 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
                case 1://资讯列表
                    messFrag = new MessageFragment(MainFunctionActivity.this,listofstring,getListofarticlelist());
                    mTransaction.add(R.id.myfragment_mainfa,messFrag);//碎片初始全部添加
-                   mTransaction.hide(videosFrag).hide(foundFrag).hide(questionFrag).hide(setFrag).commit();
+                   mTransaction.hide(videosFrag).hide(foundFrag).hide(setFrag).commit();
+                   break;
+               case 2:
+                   questionFrag = new QuestionFragment(listofquestion);
+                   mTransaction.add(R.id.myfragment_mainfa,questionFrag);
+                   mTransaction.hide(questionFrag);
                    break;
                default:
                    break;
@@ -74,6 +82,7 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
         init();
         initFragment();
         getListArticle();
+        getListQuestion();
     }
     public void init(){
         getListTitle();
@@ -83,7 +92,7 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
         mFoundTextView = (TextView)findViewById(R.id.text_found_mainactivity);
         mQuestionTextView = (TextView)findViewById(R.id.text_question_mainactivity);
         mSetTextView = (TextView)findViewById(R.id.text_set_mainactivity);
-
+        mTextTitle = (TextView)findViewById(R.id.text_title_mainfa);
         mMessageTextView.setOnClickListener(this);
         mVideosTextView.setOnClickListener(this);
         mFoundTextView.setOnClickListener(this);
@@ -96,13 +105,12 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
         //messFrag = new MessageFragment(MainFunctionActivity.this,listofstring,getListArticler());
         videosFrag = new VideosFragment();
         foundFrag = new FoundFragment();
-        questionFrag = new QuestionFragment();
         setFrag = new SetFragment();
         mTransaction = mManager.beginTransaction();
         //mTransaction.add(R.id.myfragment_mainfa,messFrag);//碎片初始全部添加
         mTransaction.add(R.id.myfragment_mainfa,videosFrag);
         mTransaction.add(R.id.myfragment_mainfa,foundFrag);
-        mTransaction.add(R.id.myfragment_mainfa,questionFrag);
+        //mTransaction.add(R.id.myfragment_mainfa,questionFrag);
         mTransaction.add(R.id.myfragment_mainfa,setFrag);
         //隐藏不需要显示的碎片
        // mTransaction.hide(videosFrag).hide(foundFrag).hide(questionFrag).hide(setFrag).commit();
@@ -113,22 +121,27 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
         switch (view.getId()){
             case R.id.text_message_mainactivity:
                 clickEventDo(1);//图标变换
+                mTextTitle.setText("资讯");
                 mLinearLayout.setBackground(getDrawable(R.drawable.r1));
                 break;
             case R.id.text_video_mainactivity:
                 clickEventDo(2);
+                mTextTitle.setText("视频");
                 mLinearLayout.setBackground(getDrawable(R.drawable.r2));
                 break;
             case R.id.text_found_mainactivity:
                 clickEventDo(3);
+                mTextTitle.setText("发现");
                 mLinearLayout.setBackground(getDrawable(R.drawable.r3));
                 break;
             case R.id.text_question_mainactivity:
                 clickEventDo(4);
+                mTextTitle.setText("问答");
                 mLinearLayout.setBackground(getDrawable(R.drawable.r4));
                 break;
             case R.id.text_set_mainactivity:
                 clickEventDo(5);
+                mTextTitle.setText("我的");
                 mLinearLayout.setBackground(getDrawable(R.drawable.r5));
                 break;
             default:
@@ -204,6 +217,38 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
                        // 通知活动数据已请求到，可以更新ui了
                         Message message = new Message();
                         message.what = 1;
+                        handler.sendMessage(message);
+                    }
+                });
+            }
+        }).start();
+    }
+    //通过网络请求，接收到问题数据
+    public void getListQuestion(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder()
+                        .url(ConstantClass.STRING_SERVICE_URL+ConstantClass.STRING_SERVICE_PROJECTNAME+"GetQuestionItem")
+                        .build();
+                Call call = client.newCall(request);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onFailure( Call call, IOException e) {
+                        Looper.prepare();
+                        ToastAction.startToast(MainFunctionActivity.this,"资讯数据请求失败！");
+                        Looper.loop();
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        Gson gson = new Gson();
+                        //Log.d("hehe",response.body().string());
+                        listofquestion = gson.fromJson(response.body().string(),new TypeToken<List<QuestionItem>>(){}.getType());
+                        // 通知活动数据已请求到，可以更新ui了
+                        Message message = new Message();
+                        message.what = 2;
                         handler.sendMessage(message);
                     }
                 });

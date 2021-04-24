@@ -11,8 +11,7 @@
     <!--返回栏-->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0sp"
-        android:layout_weight="1"
+        android:layout_height="50sp"
         android:orientation="horizontal"
         android:gravity="center">
         <!--返回图标-->
@@ -32,129 +31,140 @@
             android:layout_marginRight="8sp"
             android:src="@drawable/menu"/>
     </RelativeLayout>
-
-    <!--中间内容-->
-    <LinearLayout
-        android:layout_weight="12"
+    <ScrollView
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="0sp"
-        android:orientation="vertical"
-        android:layout_marginLeft="8sp"
-        android:layout_marginRight="8sp">
-        <!--标题-->
-        <TextView
-            android:id="@+id/text_title_articleac"
-            android:layout_width="match_parent"
-            android:layout_height="60sp"
-            android:text="文章标题"
-            android:textStyle="bold"
-            android:typeface="monospace"
-            android:textColor="#000000"
-            android:gravity="center_vertical"
-            android:textSize="22sp"/>
+        android:layout_height="0sp">
 
-        <!--作者信息， 作者头像，作者名字，文章时间-->
+
+        <!--中间内容-->
         <LinearLayout
+
             android:layout_width="match_parent"
-            android:layout_height="40sp"
-            android:orientation="horizontal">
-            <!--圆形头像-->
-            <com.ilikexy.biyesheji.zidingyiview.RoundPicture
-                android:id="@+id/roupic_author_articleac"
-                android:layout_width="40sp"
-                android:layout_height="40sp"
-                android:src="@drawable/libai"
-                app:borderColor="@color/colorGray"
-                app:borderSize="2sp"
-                >
-            </com.ilikexy.biyesheji.zidingyiview.RoundPicture>
-            <!--名字和时间-->
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="8sp"
+            android:layout_marginRight="8sp">
+            <!--标题-->
+            <TextView
+                android:id="@+id/text_title_articleac"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:text="文章标题"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                android:textColor="#000000"
+                android:gravity="center_vertical"
+                android:textSize="22sp"/>
+
+            <!--作者信息， 作者头像，作者名字，文章时间-->
             <LinearLayout
-                android:layout_weight="1"
-                android:layout_width="0sp"
+                android:layout_width="match_parent"
                 android:layout_height="40sp"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/text_authorname_articlerac"
+                android:orientation="horizontal">
+                <!--圆形头像-->
+                <com.ilikexy.biyesheji.zidingyiview.RoundPicture
+                    android:id="@+id/roupic_author_articleac"
+                    android:layout_width="40sp"
+                    android:layout_height="40sp"
+                    android:src="@drawable/libai"
+                    app:borderColor="@color/colorGray"
+                    app:borderSize="2sp"
+                    >
+                </com.ilikexy.biyesheji.zidingyiview.RoundPicture>
+                <!--名字和时间-->
+                <LinearLayout
                     android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="0sp"
-                    android:text="作者名字"
-                    android:typeface="monospace"
-                    android:textColor="#000000"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="10sp"
-                    android:textSize="12sp"/>
-                <TextView
-                    android:id="@+id/text_articletime_articlerac"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="0sp"
-                    android:text="1999/12/14"
-                    android:typeface="monospace"
-                    android:textColor="#666666"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="10sp"
-                    android:textSize="12sp"/>
+                    android:layout_width="0sp"
+                    android:layout_height="40sp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/text_authorname_articlerac"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0sp"
+                        android:text="作者名字"
+                        android:typeface="monospace"
+                        android:textColor="#000000"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10sp"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/text_articletime_articlerac"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0sp"
+                        android:text="1999/12/14"
+                        android:typeface="monospace"
+                        android:textColor="#666666"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10sp"
+                        android:textSize="12sp"/>
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="20sp"/>
-        <!--文章内容-->
-        <TextView
-            android:id="@+id/text_articlecon_articlerac"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="文章内容"
-            android:typeface="monospace"
-            android:textColor="#000000"
-            android:padding="8sp"
-            android:gravity="center_vertical"
-            android:textSize="14sp"/>
-        <!--文章图片-->
-        <ImageView
-            android:layout_gravity="center"
-            android:id="@+id/rousq_articlepic_articlerac"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <!--加载评论的按钮-->
-        <Button
-            android:id="@+id/btn_loadcomment_articleac"
-            android:layout_width="match_parent"
-            android:layout_height="45sp"
-            android:text="加载评论..."
-            android:textColor="#5b74c9"
-            android:stateListAnimator="@null"
-            android:textSize="14sp"
-            android:visibility="visible"
-            android:background="@drawable/button"/>
-        <!--显示评论的recycler view-->
-        <androidx.recyclerview.widget.RecyclerView
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20sp"/>
+            <!--文章内容-->
+            <TextView
+                android:id="@+id/text_articlecon_articlerac"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="文章内容"
+                android:typeface="monospace"
+                android:textColor="#000000"
+                android:padding="8sp"
+                android:gravity="center_vertical"
+                android:textSize="14sp"/>
+            <!--文章图片-->
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/rousq_articlepic_articlerac"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <!--加载评论的按钮-->
+            <Button
+                android:id="@+id/btn_loadcomment_articleac"
+                android:layout_width="match_parent"
+                android:layout_height="45sp"
+                android:text="加载评论..."
+                android:textColor="#5b74c9"
+                android:stateListAnimator="@null"
+                android:textSize="14sp"
+                android:visibility="visible"
+                android:background="@drawable/button"/>
+           <!--显示评论的recycler view-->
+            <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_comment_articlerac"
             android:layout_width="match_parent"
             android:layout_height="600sp" />
-    </LinearLayout>
+        </LinearLayout>
 
+
+    </ScrollView>
 
     <!--评论栏-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0sp"
-        android:layout_weight="1"
+        android:layout_height="50sp"
+
         android:orientation="horizontal"
         android:layout_marginLeft="8sp"
         android:layout_marginRight="8sp">
         <!--评论-->
         <EditText
             android:id="@+id/edit_comment_articlerac"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_width="0sp"
+            android:maxLines="2"
             android:hint="友善评论，分享你的..."
+            android:focusableInTouchMode="false"
             android:layout_height="match_parent"
+            android:textCursorDrawable="@drawable/cursor_color"
             android:typeface="monospace"
+            android:paddingLeft="6sp"
             android:textColor="#000000"
-            android:background="#00FFFFFF"
+            android:background="@drawable/button_press"
             android:gravity="center_vertical"
             android:textSize="14sp"/>
         <!--评论数，点赞数，收藏数-->
@@ -224,7 +234,7 @@
                     android:layout_width="match_parent"
                     android:layout_weight="1"
                     android:layout_height="0sp"
-                    android:src="@drawable/collectgray"/>
+                    android:src="@drawable/collgray"/>
                 <TextView
                     android:id="@+id/text_collcounts_articlerac"
                     android:layout_width="match_parent"
@@ -237,5 +247,17 @@
                     android:textSize="16sp"/>
             </LinearLayout>
         </LinearLayout>
+        <Button
+            android:id="@+id/btn_sendcom_articlerac"
+            android:layout_width="60sp"
+            android:visibility="gone"
+            android:layout_height="34sp"
+            android:text="发表"
+            android:stateListAnimator="@null"
+            android:alpha="0.5"
+            android:background="@drawable/sendgray"/>
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10sp"/>
 </LinearLayout>
