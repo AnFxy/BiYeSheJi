@@ -16,6 +16,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -33,6 +34,7 @@ public class QuestionWriteActivity extends BaseActivity implements View.OnClickL
     private EditText etQuestionTitle,etQuestionContent;
     private TextView tvCountTitle,tvCountContent,tvSendQuestion;
     private Boolean isCanSendQuestion = false;
+    private ImageView ivBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +47,8 @@ public class QuestionWriteActivity extends BaseActivity implements View.OnClickL
         tvCountTitle = (TextView)findViewById(R.id.text_counttitlewords_queswriteac);
         tvCountContent = (TextView)findViewById(R.id.text_countconwords_queswriteac);
         tvSendQuestion = (TextView)findViewById(R.id.text_menu_common);
+        ivBack = (ImageView)findViewById(R.id.image_back_common);
+        ivBack.setOnClickListener(this);
         tvSendQuestion.setOnClickListener(this);
         /**检测标题和内容，如果有任何一方为空，则保持灰色*/
         etQuestionTitle.addTextChangedListener(new TextWatcher() {
@@ -60,6 +64,7 @@ public class QuestionWriteActivity extends BaseActivity implements View.OnClickL
             public void afterTextChanged(Editable s) {
                 String data = etQuestionTitle.getText().toString();//获取标题内容
                 String data1 = etQuestionContent.getText().toString();//获取问题内容
+                tvCountTitle.setText(""+data.length()+"/20");
                 if (!data.equals("")&&!data1.equals("")){
                     isCanSendQuestion = true;
                     tvSendQuestion.setTextColor(Color.parseColor("#00aaff"));
@@ -82,6 +87,7 @@ public class QuestionWriteActivity extends BaseActivity implements View.OnClickL
             public void afterTextChanged(Editable s) {
                 String data = etQuestionTitle.getText().toString();//获取标题内容
                 String data1 = etQuestionContent.getText().toString();//获取问题内容
+                tvCountContent.setText(""+data1.length()+"/600");
                 if (!data.equals("")&&!data1.equals("")){
                     isCanSendQuestion = true;
                     tvSendQuestion.setTextColor(Color.parseColor("#00aaff"));
@@ -107,6 +113,9 @@ public class QuestionWriteActivity extends BaseActivity implements View.OnClickL
                     String data1 = etQuestionContent.getText().toString();//获取问题内容
                     sendQuestionToServer(data,data1);
                 }
+                break;
+            case R.id.image_back_common:
+                onBackPressed();
                 break;
             default:
                 break;

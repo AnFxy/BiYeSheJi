@@ -81,6 +81,8 @@ public class QuestionItemListAdapter extends RecyclerView.Adapter<QuestionItemLi
          holder.mTextAuthor.setText(item.getAuthorName());
          holder.mTextTime.setText(item.getQuestionTime());
          holder.mTextContent.setText(item.getQuestionContent());
+         holder.mTextAnswer.setText(item.getQuestionAnswer());
+         holder.mTextAgree.setText(item.getQuestionAgree());
         if (item.getAuthorPic()==null){//图片为空，说明第一次加载
             upDataPicture(holder,item);
 
