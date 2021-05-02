@@ -15,6 +15,7 @@ import com.google.gson.reflect.TypeToken;
 import com.ilikexy.biyesheji.baseactivity.BaseActivity;
 import com.ilikexy.biyesheji.constant.ConstantClass;
 import com.ilikexy.biyesheji.constant.ToastAction;
+import com.ilikexy.biyesheji.constant.ValueAnimator;
 import com.ilikexy.biyesheji.entity.ArticleList;
 import com.ilikexy.biyesheji.entity.QuestionItem;
 import com.ilikexy.biyesheji.entity.ReceiveArticleList;
@@ -104,12 +105,15 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
     public void initFragment(){
         //messFrag = new MessageFragment(MainFunctionActivity.this,listofstring,getListArticler());
         videosFrag = new VideosFragment();
-        foundFrag = new FoundFragment();
+
         setFrag = new SetFragment();
+        foundFrag = new FoundFragment();
+
         mTransaction = mManager.beginTransaction();
+        mTransaction.add(R.id.myfragment_mainfa,foundFrag);
         //mTransaction.add(R.id.myfragment_mainfa,messFrag);//碎片初始全部添加
         mTransaction.add(R.id.myfragment_mainfa,videosFrag);
-        mTransaction.add(R.id.myfragment_mainfa,foundFrag);
+
         //mTransaction.add(R.id.myfragment_mainfa,questionFrag);
         mTransaction.add(R.id.myfragment_mainfa,setFrag);
         //隐藏不需要显示的碎片
@@ -162,8 +166,10 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
                         .hide(setFrag).commit();
                 break;
             case 3:
+
                 mTransaction.show(foundFrag).hide(videosFrag).hide(messFrag).hide(questionFrag)
                         .hide(setFrag).commit();
+                ValueAnimator.catoonShow2(foundFrag.qqStep,0,60,2000);
                 break;
             case 4:
                 mTransaction.show(questionFrag).hide(videosFrag).hide(foundFrag).hide(messFrag)

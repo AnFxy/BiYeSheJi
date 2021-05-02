@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!--题目标题-->
+    <TextView
+        android:id="@+id/tv_title_tifragment"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="下列属于薪酬机制的原则的是 （ ）。"
+        android:layout_marginTop="8dp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        android:textColor="#333333"
+        android:gravity="center_vertical"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <!--一共有4个选项，ABCD，做成recyclerview也不现实-->
+    <!--A 选项-->
+    <LinearLayout
+        android:id="@+id/ll_ti_a"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_tifragment"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:orientation="horizontal">
+        <CheckBox
+            android:id="@+id/tv_ti_xuanxiang_a_tifragment"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="A"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            android:textColor="#666666"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:button="@null"
+            android:background="@drawable/text_xuanxiang"
+            />
+        <TextView
+            android:id="@+id/tv_ti_content_a_tifragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="薪酬机制与银行公司治理要求统一"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            android:textColor="#666666"
+            android:gravity="center_vertical"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+
+    <!--B 选项-->
+    <LinearLayout
+        android:id="@+id/ll_ti_b"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toBottomOf="@id/ll_ti_a"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/tv_ti_xuanxiang_b_tifragment"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="B"
+            android:textStyle="bold"
+            android:button="@null"
+            android:typeface="monospace"
+            android:textColor="#666666"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@drawable/text_xuanxiang"
+            />
+        <TextView
+            android:id="@+id/tv_ti_content_b_tifragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="薪酬激励与银行竞争能力及银行持续能力建设相兼顾"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            android:textColor="#666666"
+            android:gravity="center_vertical"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!--C 选项-->
+    <LinearLayout
+        android:id="@+id/ll_ti_c"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toBottomOf="@id/ll_ti_b"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:orientation="horizontal">
+        <CheckBox
+            android:id="@+id/tv_ti_xuanxiang_c_tifragment"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="C"
+            android:textStyle="bold"
+            android:button="@null"
+            android:typeface="monospace"
+            android:textColor="#666666"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@drawable/text_xuanxiang"
+            />
+        <TextView
+            android:id="@+id/tv_ti_content_c_tifragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="薪酬水平与风险成本调整后的经营业绩相适应"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            android:textColor="#666666"
+            android:gravity="center_vertical"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!--D 选项-->
+    <LinearLayout
+        android:id="@+id/ll_ti_d"
+        android:layout_width="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/ll_ti_c"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <CheckBox
+            android:id="@+id/tv_ti_xuanxiang_d_tifragment"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="D"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            android:textColor="#666666"
+            android:gravity="center"
+            android:button="@null"
+            android:textSize="18sp"
+            android:background="@drawable/text_xuanxiang"
+            />
+        <TextView
+            android:id="@+id/tv_ti_content_d_tifragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="短期激励与长期激励相协调"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            android:textColor="#666666"
+            android:gravity="center_vertical"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

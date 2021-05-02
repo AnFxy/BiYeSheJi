@@ -19,7 +19,8 @@
             android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity android:name=".CeshiActivity" />
         <activity android:name=".XieYiActivity" />
-        <activity android:name=".MainFunctionActivity" />
+        <activity android:name=".MainFunctionActivity" >
+        </activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">

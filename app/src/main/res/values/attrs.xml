@@ -30,4 +30,21 @@
             <enum name="RIGHT_TO_LEFT" value="2"></enum>
         </attr>
     </declare-styleable>
+
+    <!--`答题正确率，类似于qq步数的实现-->
+    <declare-styleable name="QQStep">
+         <attr name="strokeSize" format="dimension"></attr>
+         <attr name="strokeBackColor" format="color"></attr>
+         <attr name="strokeSloidColor" format="color"></attr>
+
+         <attr name="numberColor" format="color"></attr>
+         <attr name="rightTextColor" format="color"></attr>
+         <attr name="countAllAnswerColor" format="color"></attr>
+
+         <attr name="numberSize" format="dimension"></attr>
+         <attr name="rightTextSize" format="dimension"></attr>
+         <attr name="countAllSize" format="dimension"></attr>
+         <attr name="allAnswer" format="integer"></attr>
+        <attr name="rightScale" format="integer"></attr>
+    </declare-styleable>
 </resources>
