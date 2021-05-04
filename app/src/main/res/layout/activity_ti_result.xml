@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".TiResultActivity">
+    <!--返回图标-->
+    <ImageView
+        android:id="@+id/iv_back_itresultac"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="8sp"
+        android:src="@drawable/back1"/>
+    <!--大头像-->
+    <com.ilikexy.biyesheji.zidingyiview.RoundPicture
+        android:id="@+id/roupic_author_tiresultac"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+    <TextView
+        android:id="@+id/tv_fakename_tiresultac"
+        android:layout_width="wrap_content"
+        android:layout_height="40sp"
+        android:text="用户名字"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        android:textColor="#03c45c"
+        android:gravity="center"
+        android:textSize="16sp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintTop_toBottomOf="@id/roupic_author_tiresultac"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"  />
+    <!--成绩-->
+    <LinearLayout
+        android:id="@+id/lv_scord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_fakename_tiresultac"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/tv_right_tiresultac"
+            android:layout_width="wrap_content"
+            android:layout_height="50sp"
+            android:text="4"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            android:textColor="#03c45c"
+            android:gravity="top"
+            android:textSize="34sp" />
+        <TextView
+            android:id="@+id/tv_allcount_tiresultac"
+            android:layout_width="wrap_content"
+            android:layout_height="40sp"
+            android:text="/9"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            android:textColor="#000000"
+            android:gravity="bottom"
+            android:textSize="26sp" />
+    </LinearLayout>
+    <!--恭喜你-->
+    <LinearLayout
+        android:id="@+id/lv_scordtwo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/lv_scord"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="恭喜你，本次答题已成功超越 "
+            android:typeface="monospace"
+            android:textColor="#999999"
+            android:gravity="center"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/tv_beyong_tiresultac"
+            android:layout_width="wrap_content"
+            android:layout_height="40sp"
+            android:text="99.99%"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            android:textColor="#03c45c"
+            android:gravity="center"
+            android:textSize="30sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 的同学"
+            android:typeface="monospace"
+            android:textColor="#999999"
+            android:gravity="center"
+            android:textSize="16sp" />
+    </LinearLayout>
+    <!--题目详情-->
+    <LinearLayout
+        android:id="@+id/lv_scordthree"
+        android:layout_width="match_parent"
+        android:layout_height="200sp"
+        android:background="@drawable/linear_border"
+        app:layout_constraintTop_toBottomOf="@id/lv_scordtwo"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_tiresultac"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <!--详情见错题本-->
+    <TextView
+        android:id="@+id/tv_wrong_tiresultac"
+        android:layout_width="wrap_content"
+        android:layout_height="40sp"
+        android:layout_marginTop="10dp"
+        android:text="详情见错题本 >>"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        android:textColor="#0000aa"
+        android:gravity="center"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/lv_scordthree"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"  />
+</androidx.constraintlayout.widget.ConstraintLayout>

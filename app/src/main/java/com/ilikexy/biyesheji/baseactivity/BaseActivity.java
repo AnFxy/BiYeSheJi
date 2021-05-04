@@ -22,7 +22,7 @@ public class BaseActivity extends AppCompatActivity {
             getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorAccent));
         }//底部导航栏颜色
         ActivityControler.addActivity(this);
-        StatusBarUtil.setColor(this, Color.parseColor("#ededed"),0);
+        StatusBarUtil.setColor(this, Color.parseColor("#ffffff"),0);
         StatusBarUtil.setLightMode(this);
     }
     //常用启动活动的函数
