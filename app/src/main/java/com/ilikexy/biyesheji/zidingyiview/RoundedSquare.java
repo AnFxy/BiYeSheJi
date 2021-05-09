@@ -19,7 +19,7 @@ import com.ilikexy.biyesheji.photouri.PicCutAndScale;
 
 public class RoundedSquare extends androidx.appcompat.widget.AppCompatImageView {
     //需要裁剪的图片是个默认头像
-    public Bitmap mbitmap = BitmapFactory.decodeResource(getResources(),R.drawable.graytouxiang);
+    public Bitmap mbitmap ;
     public static int warpContentSize=45;
     public int mroudedSquareRadius =3;
     public Paint mroudedSquarePaint;
@@ -40,6 +40,7 @@ public class RoundedSquare extends androidx.appcompat.widget.AppCompatImageView 
     }
     //控件属性初始化
     public void initKongjian(Context context,AttributeSet attrs){
+        mbitmap= BitmapFactory.decodeResource(getResources(),R.drawable.graytouxiang);
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.RoundedSquare);
         mroudedSquareRadius = array.getDimensionPixelSize(R.styleable.RoundedSquare_roundedRadius,sp2px(mroudedSquareRadius));
         mroudedSquarePaint = new Paint();//画笔初始化

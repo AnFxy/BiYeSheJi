@@ -1,5 +1,6 @@
 package com.ilikexy.biyesheji;
 
+import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,8 +18,10 @@ import com.ilikexy.biyesheji.constant.ConstantClass;
 import com.ilikexy.biyesheji.constant.ToastAction;
 import com.ilikexy.biyesheji.constant.ValueAnimator;
 import com.ilikexy.biyesheji.entity.ArticleList;
+import com.ilikexy.biyesheji.entity.DaTiJieGuo;
 import com.ilikexy.biyesheji.entity.QuestionItem;
 import com.ilikexy.biyesheji.entity.ReceiveArticleList;
+import com.ilikexy.biyesheji.entity.TiRank;
 import com.ilikexy.biyesheji.fragment.FoundFragment;
 import com.ilikexy.biyesheji.fragment.MessageFragment;
 import com.ilikexy.biyesheji.fragment.QuestionFragment;
@@ -50,6 +53,8 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
     List<ReceiveArticleList> receivearticlelist;
     //问题question数据
     List<QuestionItem> listofquestion;
+    //排行榜数据
+    List<TiRank> listofranklist;
     //提高fragment切换的性能
     MessageFragment messFrag;
     VideosFragment videosFrag;
@@ -64,12 +69,17 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
                case 1://资讯列表
                    messFrag = new MessageFragment(MainFunctionActivity.this,listofstring,getListofarticlelist());
                    mTransaction.add(R.id.myfragment_mainfa,messFrag);//碎片初始全部添加
-                   mTransaction.hide(videosFrag).hide(foundFrag).hide(setFrag).commit();
+                   mTransaction.hide(videosFrag).hide(setFrag).commit();
                    break;
                case 2:
                    questionFrag = new QuestionFragment(listofquestion);
                    mTransaction.add(R.id.myfragment_mainfa,questionFrag);
                    mTransaction.hide(questionFrag);
+                   break;
+               case 3:
+                   foundFrag = new FoundFragment(listofranklist);
+                   mTransaction.add(R.id.myfragment_mainfa,foundFrag);
+                   mTransaction.hide(foundFrag);
                    break;
                default:
                    break;
@@ -84,6 +94,7 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
         initFragment();
         getListArticle();
         getListQuestion();
+        getRankList();
     }
     public void init(){
         getListTitle();
@@ -106,11 +117,11 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
         //messFrag = new MessageFragment(MainFunctionActivity.this,listofstring,getListArticler());
         videosFrag = new VideosFragment();
 
-        setFrag = new SetFragment();
-        foundFrag = new FoundFragment();
+        setFrag = new SetFragment(getUsename());
+       // foundFrag = new FoundFragment();
 
         mTransaction = mManager.beginTransaction();
-        mTransaction.add(R.id.myfragment_mainfa,foundFrag);
+        //mTransaction.add(R.id.myfragment_mainfa,foundFrag);
         //mTransaction.add(R.id.myfragment_mainfa,messFrag);//碎片初始全部添加
         mTransaction.add(R.id.myfragment_mainfa,videosFrag);
 
@@ -169,7 +180,7 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
 
                 mTransaction.show(foundFrag).hide(videosFrag).hide(messFrag).hide(questionFrag)
                         .hide(setFrag).commit();
-                ValueAnimator.catoonShow2(foundFrag.qqStep,0,60,2000);
+                getDataFromServer();
                 break;
             case 4:
                 mTransaction.show(questionFrag).hide(videosFrag).hide(foundFrag).hide(messFrag)
@@ -196,7 +207,82 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
         listofstring.add("垃圾");
         listofstring.add("森林");
     }
+    //获得用户自己的usename
+    public  String getUsename(){
+        SharedPreferences sp = getSharedPreferences(ConstantClass.STRING_SHAREPREFER_USE_PASS,MODE_PRIVATE);
+        String getusenamer = sp.getString("usename","");
+        return getusenamer;
+    }
+    //获取答题数正确率
+    public void getDataFromServer(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder()
+                        .url(ConstantClass.STRING_SERVICE_URL+ConstantClass.STRING_SERVICE_PROJECTNAME+
+                                "GetJieGuo?&usename="+getUsename())
+                        .build();
+                Call call = client.newCall(request);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onFailure( Call call, IOException e) {
+                        Looper.prepare();
+                        ToastAction.startToast(MainFunctionActivity.this,"数据请求失败！");
+                        Looper.loop();
+                    }
 
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        Gson gson = new Gson();
+                        //Log.d("hehe",response.body().string());
+                        final DaTiJieGuo daTiJieGuo = gson.fromJson(response.body().string(),new TypeToken<DaTiJieGuo>(){}.getType());
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ValueAnimator.catoonShow2(foundFrag.qqStep,daTiJieGuo.getAllCount(),
+                                        0,daTiJieGuo.getLvRight(),2000);
+
+                            }
+                        });
+
+                    }
+                });
+            }
+        }).start();
+    }
+    //通过网络请求，接收到排行榜数据
+    public void getRankList(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder()
+                        .url(ConstantClass.STRING_SERVICE_URL+ConstantClass.STRING_SERVICE_PROJECTNAME+"GetRankList")
+                        .build();
+                Call call = client.newCall(request);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onFailure( Call call, IOException e) {
+                        Looper.prepare();
+                        ToastAction.startToast(MainFunctionActivity.this,"排行榜数据请求失败！");
+                        Looper.loop();
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        Gson gson = new Gson();
+                        //Log.d("hehe",response.body().string());
+                        listofranklist = gson.fromJson(response.body().string(),new TypeToken<List<TiRank>>(){}.getType());
+                        // 通知活动数据已请求到，可以更新ui了
+                        Message message = new Message();
+                        message.what = 3;
+                        handler.sendMessage(message);
+                    }
+                });
+            }
+        }).start();
+    }
     //资讯文章内容数据
     public void getListArticle(){
         new Thread(new Runnable() {

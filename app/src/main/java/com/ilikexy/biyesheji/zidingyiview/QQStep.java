@@ -140,8 +140,8 @@ public class QQStep extends androidx.appcompat.widget.AppCompatTextView {
         //绘制一个圆角弧度
         Rect bounds2 = new Rect();//画笔测量
         righttextPaint.getTextBounds("正确率",0,"正确率".length(),bounds2);
-        RectF rectF2 = new RectF(x,getHeight()/2+bounds2.height()/4,
-                getWidth()-x,
+        RectF rectF2 = new RectF(64,getHeight()/2+bounds2.height()/4,
+                getWidth()-64,
                 getHeight()/2+2*bounds2.height());
         //绘制正确率
         canvas.drawText("正确率",getWidth()/2-bounds2.width()/2,baseline+bounds.height(),righttextPaint);
@@ -156,8 +156,9 @@ public class QQStep extends androidx.appcompat.widget.AppCompatTextView {
                 baseline+bounds.height()+bounds2.height()+strokeSize,countallPaint);
 
     }
-    public void drawAgain(int rightscale){
+    public void drawAgain(int rightscale,int allanswer){
         this.rightScale = rightscale;
+        this.allAnswer = allanswer;
         invalidate();
     }
 }

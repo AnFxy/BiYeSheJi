@@ -32,7 +32,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class QuestionItemListAdapter extends RecyclerView.Adapter<QuestionItemListAdapter.MyViewHolder> {
-    private List<QuestionItem> listofitem;
+    private List<QuestionItem>  listitem;
     Context contexter;
     Activity activityer;
     class MyViewHolder extends RecyclerView.ViewHolder{
@@ -53,7 +53,7 @@ public class QuestionItemListAdapter extends RecyclerView.Adapter<QuestionItemLi
     }
     //构造函数
     public QuestionItemListAdapter(List<QuestionItem> cListofitem,Context context,Activity cactivity){
-         listofitem = cListofitem;
+         listitem = cListofitem;
          contexter = context;
          activityer = cactivity;
     }
@@ -67,7 +67,7 @@ public class QuestionItemListAdapter extends RecyclerView.Adapter<QuestionItemLi
              @Override
              public void onClick(View v) {
                  int position = holder.getAdapterPosition();
-                 QuestionItem item = listofitem.get(position);
+                 QuestionItem item = listitem.get(position);
                  QuestionActivity.jumpToQuestion(parent.getContext(),item.getQuestionUid());
              }
          });
@@ -76,7 +76,7 @@ public class QuestionItemListAdapter extends RecyclerView.Adapter<QuestionItemLi
 
     @Override
     public void onBindViewHolder(QuestionItemListAdapter.MyViewHolder holder, int position) {
-         QuestionItem item = listofitem.get(position);
+         QuestionItem item = listitem.get(position);
          holder.mTextTitle.setText(item.getQuestionTitle());
          holder.mTextAuthor.setText(item.getAuthorName());
          holder.mTextTime.setText(item.getQuestionTime());
@@ -93,7 +93,7 @@ public class QuestionItemListAdapter extends RecyclerView.Adapter<QuestionItemLi
 
     @Override
     public int getItemCount() {
-        return listofitem.size();
+        return listitem.size();
     }
     //图片更新
     public void upDataPicture(final QuestionItemListAdapter.MyViewHolder holder, final QuestionItem item){

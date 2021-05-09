@@ -22,7 +22,7 @@
         android:id="@+id/tv_answer_days_foundfragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="累计练习0天"
+        android:text="累计练习1天"
         android:typeface="monospace"
         android:textColor="#999999"
         android:padding="8sp"

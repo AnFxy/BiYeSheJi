@@ -3,25 +3,15 @@ package com.ilikexy.biyesheji.entity;
 import android.graphics.Bitmap;
 
 public class TiRank {
-    private String order;
     private String fakename;
-    private String picUid;
+    private String usepicuid;
     private Bitmap bitmap;
     private int right;
-    public TiRank(String corder,String cfakename,String picuid,Bitmap cbitmap,int cright){
-        this.order = corder;
+    public TiRank(String usepicuid,Bitmap cbitmap,String cfakename,int cright){
         this.fakename = cfakename;
-        this.picUid = picuid;
+        this.usepicuid = usepicuid;
         this.bitmap = cbitmap;
         this.right = cright;
-    }
-
-    public String getOrder() {
-        return order;
-    }
-
-    public void setOrder(String order) {
-        this.order = order;
     }
 
     public String getFakename() {
@@ -32,12 +22,12 @@ public class TiRank {
         this.fakename = fakename;
     }
 
-    public String getPicUid() {
-        return picUid;
+    public String getUsepicuid() {
+        return usepicuid;
     }
 
-    public void setPicUid(String picUid) {
-        this.picUid = picUid;
+    public void setUsepicuid(String usepicuid) {
+        this.usepicuid = usepicuid;
     }
 
     public Bitmap getBitmap() {

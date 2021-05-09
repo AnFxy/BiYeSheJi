@@ -2,8 +2,10 @@ package com.ilikexy.biyesheji.adapter;
 
 
 import android.app.Activity;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import com.ilikexy.biyesheji.R;
 import com.ilikexy.biyesheji.constant.ConstantClass;
 import com.ilikexy.biyesheji.entity.QuestionItem;
 import com.ilikexy.biyesheji.entity.RankItem;
+import com.ilikexy.biyesheji.entity.TiRank;
 import com.ilikexy.biyesheji.zidingyiview.RoundPicture;
 import com.ilikexy.biyesheji.zidingyiview.RoundedSquare;
 
@@ -30,7 +33,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class FoundFragRankRecyAdapter extends RecyclerView.Adapter<FoundFragRankRecyAdapter.MyViewHolder> {
-    private List<RankItem> listofitem;
+    private List<TiRank> listofitem;
     Activity activityer;
     class MyViewHolder extends RecyclerView.ViewHolder{
         TextView tvOrder,tvFakename,tvRigntNumber;
@@ -46,7 +49,7 @@ public class FoundFragRankRecyAdapter extends RecyclerView.Adapter<FoundFragRank
         }
     }
     //构造函数
-    public FoundFragRankRecyAdapter(List<RankItem> cListofitem,Activity cactivity){
+    public FoundFragRankRecyAdapter(List<TiRank> cListofitem,Activity cactivity){
         listofitem = cListofitem;
         activityer = cactivity;
     }
@@ -55,19 +58,30 @@ public class FoundFragRankRecyAdapter extends RecyclerView.Adapter<FoundFragRank
     public FoundFragRankRecyAdapter.MyViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_foundfrag_rank_list,parent,false);
         MyViewHolder holder = new MyViewHolder(view);
+        holder.setIsRecyclable(false);
         return holder;
     }
 
    @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        RankItem item = listofitem.get(position);
-        holder.tvOrder.setText(item.getOrderNumber());
-        holder.tvFakename.setText(item.getFakeName());
-        holder.tvRigntNumber.setText(item.getRightNumber());
-        if (item.getmBitmaper()==null){//图片为空，说明第一次加载
+        TiRank item = listofitem.get(position);
+        if((position+1)==1){
+            holder.tvOrder.setTextColor(Color.parseColor("#ffffff"));
+            holder.tvOrder.setBackgroundResource(R.drawable.order_gold);
+        }else if((position+1)==2){
+            holder.tvOrder.setTextColor(Color.parseColor("#ffffff"));
+            holder.tvOrder.setBackgroundResource(R.drawable.order_silver);
+        }else if((position+1)==3){
+            holder.tvOrder.setTextColor(Color.parseColor("#ffffff"));
+            holder.tvOrder.setBackgroundResource(R.drawable.order_copper);
+        }
+        holder.tvOrder.setText(""+(position+1));
+        holder.tvFakename.setText(item.getFakename());
+        holder.tvRigntNumber.setText(""+item.getRight());
+        if (item.getBitmap()==null){//图片为空，说明第一次加载
             upDataPicture(holder,item);
         }else{
-            holder.rqUserPic.setMbitmap(item.getmBitmaper());
+            holder.rqUserPic.setMbitmap(item.getBitmap());
         }
     }
 
@@ -76,14 +90,14 @@ public class FoundFragRankRecyAdapter extends RecyclerView.Adapter<FoundFragRank
         return listofitem.size();
     }
     //图片更新
-    public void upDataPicture(final MyViewHolder holder, final RankItem item){
+    public void upDataPicture(final MyViewHolder holder, final TiRank item){
         new Thread(new Runnable() {
             @Override
             public void run() {
                 OkHttpClient client  = new OkHttpClient();
                 Request request = new Request.Builder()
                         .url(ConstantClass.STRING_SERVICE_URL+ConstantClass.STRING_SERVICE_PROJECTNAME
-                                +"downloadServlet.do?picuid="+item.getmPicUid())
+                                +"downloadServlet.do?picuid="+item.getUsepicuid())
                         .build();
                 Call call = client.newCall(request);
                 call.enqueue(new Callback() {
@@ -98,7 +112,7 @@ public class FoundFragRankRecyAdapter extends RecyclerView.Adapter<FoundFragRank
                             activityer.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                item.setmBitmaper(bitmap);
+                                item.setBitmap(bitmap);
                                 holder.rqUserPic.setMbitmap(bitmap);
                             }
                         });

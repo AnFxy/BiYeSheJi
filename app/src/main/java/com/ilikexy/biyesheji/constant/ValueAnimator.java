@@ -21,7 +21,7 @@ public class ValueAnimator {
         });
         valueAnimator.start();
     }
-    public static void catoonShow2(final QQStep qqStep, float start, float end, int time){
+    public static void catoonShow2(final QQStep qqStep, final int allanswer, float start, float end, int time){
         android.animation.ValueAnimator valueAnimator = ObjectAnimator.ofFloat(start,end);
         valueAnimator.setDuration(time);//变化总体时间
         valueAnimator.setInterpolator(new LinearInterpolator());//匀速变化
@@ -30,7 +30,7 @@ public class ValueAnimator {
             public void onAnimationUpdate(android.animation.ValueAnimator c_animator) {
                 float currentprogress =  (Float)c_animator.getAnimatedValue();
                // wangZheLoad.setProgress(currentprogress%2);//调用自定义view中 设置进度的方法，
-                qqStep.drawAgain((int)currentprogress);
+                qqStep.drawAgain((int)currentprogress,allanswer);
                 //取余2是为了保证progress在 0----2之间变换
             }
         });
