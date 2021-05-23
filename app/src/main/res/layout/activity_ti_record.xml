@@ -25,7 +25,8 @@
         android:layout_marginTop="50dp"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="答题数"
             android:textStyle="bold"
@@ -35,10 +36,10 @@
             android:textSize="18sp"
             />
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="正确数"
-            android:layout_marginLeft="20dp"
             android:textStyle="bold"
             android:typeface="monospace"
             android:textColor="#999999"
@@ -46,22 +47,22 @@
             android:textSize="18sp"
             />
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="答题时间"
             android:textStyle="bold"
-            android:layout_marginLeft="80dp"
             android:typeface="monospace"
             android:textColor="#999999"
             android:gravity="center"
             android:textSize="18sp"
             />
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="答题耗时"
             android:textStyle="bold"
-            android:layout_marginLeft="60dp"
             android:typeface="monospace"
             android:textColor="#999999"
             android:gravity="center"

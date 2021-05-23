@@ -34,4 +34,5 @@ public class MessContentFragment extends Fragment {//首页消息内容每个标
         mMyRecycler.setAdapter(mConRecyAdapter);
         return view;
     }
+
 }

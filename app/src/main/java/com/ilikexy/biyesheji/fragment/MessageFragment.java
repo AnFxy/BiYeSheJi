@@ -2,17 +2,26 @@ package com.ilikexy.biyesheji.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.ilikexy.biyesheji.MainFunctionActivity;
 import com.ilikexy.biyesheji.R;
 import com.ilikexy.biyesheji.adapter.MessageTitleAdatper;
 import com.ilikexy.biyesheji.constant.CenterLayoutManager;
+import com.ilikexy.biyesheji.constant.ConstantClass;
+import com.ilikexy.biyesheji.constant.ToastAction;
 import com.ilikexy.biyesheji.entity.MessageTitlerClass;
 import com.ilikexy.biyesheji.entity.ArticleList;
+import com.ilikexy.biyesheji.entity.ReceiveArticleList;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +30,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class MessageFragment extends Fragment implements ViewPager.OnPageChangeListener{
     private Context mContext;//从活动中获取上下文
@@ -66,6 +80,7 @@ public class MessageFragment extends Fragment implements ViewPager.OnPageChangeL
             mListMessConFrag.add(fragmenter);
         }
     }
+
     //8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
     @Override
     public void onCreate( Bundle savedInstanceState) {

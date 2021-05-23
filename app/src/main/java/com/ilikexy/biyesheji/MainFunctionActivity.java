@@ -27,6 +27,7 @@ import com.ilikexy.biyesheji.fragment.MessageFragment;
 import com.ilikexy.biyesheji.fragment.QuestionFragment;
 import com.ilikexy.biyesheji.fragment.SetFragment;
 import com.ilikexy.biyesheji.fragment.VideosFragment;
+import com.ilikexy.biyesheji.model.VideoTestData;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -115,7 +116,7 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
     //初始状态下，把4个Fragment都添加进布局中，然后设置其他的隐身
     public void initFragment(){
         //messFrag = new MessageFragment(MainFunctionActivity.this,listofstring,getListArticler());
-        videosFrag = new VideosFragment();
+        videosFrag = new VideosFragment(MainFunctionActivity.this);
 
         setFrag = new SetFragment(getUsename());
        // foundFrag = new FoundFragment();
@@ -173,8 +174,10 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
                         .hide(setFrag).commit();
                 break;
             case 2:
+               // videosFrag = new VideosFragment(VideoTestData.getVideoItem(MainFunctionActivity.this));
                 mTransaction.show(videosFrag).hide(messFrag).hide(foundFrag).hide(questionFrag)
                         .hide(setFrag).commit();
+
                 break;
             case 3:
 
@@ -361,4 +364,5 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
         }
         return listofart;
     }
+
 }

@@ -21,6 +21,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:src="@drawable/graytouxiang"/>
+        android:src="@drawable/bbbb"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

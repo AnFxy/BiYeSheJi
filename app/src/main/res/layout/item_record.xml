@@ -13,8 +13,9 @@
         android:layout_marginTop="30dp"
         android:orientation="horizontal">
             <TextView
+                android:layout_weight="1"
                 android:id="@+id/tv_count_item_tirecord"
-                android:layout_width="80dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="答题数"
                 android:typeface="monospace"
@@ -23,8 +24,9 @@
                 android:textSize="18sp"
                 />
             <TextView
+                android:layout_weight="1"
                 android:id="@+id/tv_right_item_tirecord"
-                android:layout_width="80dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="正确数"
                 android:typeface="monospace"
@@ -33,22 +35,22 @@
                 android:textSize="18sp"
                 />
             <TextView
+                android:layout_weight="1"
                 android:id="@+id/tv_time_item_tirecord"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
                 android:text="答题时间"
-                android:layout_marginLeft="20dp"
                 android:typeface="monospace"
                 android:textColor="#666666"
                 android:gravity="center"
                 android:textSize="12sp"
                 />
             <TextView
+                android:layout_weight="1"
                 android:id="@+id/tv_usetime_item_tirecord"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="答题耗时"
-                android:layout_marginLeft="20dp"
                 android:typeface="monospace"
                 android:textColor="#333333"
                 android:gravity="center"
