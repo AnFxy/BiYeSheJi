@@ -530,4 +530,8 @@ public class QuestionActivity extends BaseActivity implements View.OnClickListen
         });
 
     }
+    @Override
+    public void onBackPressed() {
+        BaseActivity.jump(QuestionActivity.this,MainFunctionActivity.class);
+    }
 }

@@ -70,12 +70,7 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
                case 1://资讯列表
                    messFrag = new MessageFragment(MainFunctionActivity.this,listofstring,getListofarticlelist());
                    mTransaction.add(R.id.myfragment_mainfa,messFrag);//碎片初始全部添加
-                   mTransaction.hide(videosFrag).hide(setFrag).commit();
-                   break;
-               case 2:
-                   questionFrag = new QuestionFragment(listofquestion);
-                   mTransaction.add(R.id.myfragment_mainfa,questionFrag);
-                   mTransaction.hide(questionFrag);
+                   mTransaction.hide(videosFrag).hide(setFrag).hide(questionFrag).commit();
                    break;
                case 3:
                    foundFrag = new FoundFragment(listofranklist);
@@ -94,7 +89,6 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
         init();
         initFragment();
         getListArticle();
-        getListQuestion();
         getRankList();
     }
     public void init(){
@@ -117,7 +111,7 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
     public void initFragment(){
         //messFrag = new MessageFragment(MainFunctionActivity.this,listofstring,getListArticler());
         videosFrag = new VideosFragment(MainFunctionActivity.this);
-
+        questionFrag = new QuestionFragment();
         setFrag = new SetFragment(getUsename());
        // foundFrag = new FoundFragment();
 
@@ -125,7 +119,7 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
         //mTransaction.add(R.id.myfragment_mainfa,foundFrag);
         //mTransaction.add(R.id.myfragment_mainfa,messFrag);//碎片初始全部添加
         mTransaction.add(R.id.myfragment_mainfa,videosFrag);
-
+        mTransaction.add(R.id.myfragment_mainfa,questionFrag);
         //mTransaction.add(R.id.myfragment_mainfa,questionFrag);
         mTransaction.add(R.id.myfragment_mainfa,setFrag);
         //隐藏不需要显示的碎片
@@ -238,8 +232,10 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         Gson gson = new Gson();
-                        //Log.d("hehe",response.body().string());
-                        final DaTiJieGuo daTiJieGuo = gson.fromJson(response.body().string(),new TypeToken<DaTiJieGuo>(){}.getType());
+                        String aa = response.body().string();
+                        Log.d("hehe",aa);
+                        final DaTiJieGuo daTiJieGuo = gson.fromJson(aa,new TypeToken<DaTiJieGuo>(){}.getType());
+
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -318,38 +314,7 @@ public class MainFunctionActivity extends BaseActivity implements View.OnClickLi
             }
         }).start();
     }
-    //通过网络请求，接收到问题数据
-    public void getListQuestion(){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                OkHttpClient client = new OkHttpClient();
-                Request request = new Request.Builder()
-                        .url(ConstantClass.STRING_SERVICE_URL+ConstantClass.STRING_SERVICE_PROJECTNAME+"GetQuestionItem")
-                        .build();
-                Call call = client.newCall(request);
-                call.enqueue(new Callback() {
-                    @Override
-                    public void onFailure( Call call, IOException e) {
-                        Looper.prepare();
-                        ToastAction.startToast(MainFunctionActivity.this,"资讯数据请求失败！");
-                        Looper.loop();
-                    }
 
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        Gson gson = new Gson();
-                        //Log.d("hehe",response.body().string());
-                        listofquestion = gson.fromJson(response.body().string(),new TypeToken<List<QuestionItem>>(){}.getType());
-                        // 通知活动数据已请求到，可以更新ui了
-                        Message message = new Message();
-                        message.what = 2;
-                        handler.sendMessage(message);
-                    }
-                });
-            }
-        }).start();
-    }
     //接收到的数据和视图数据进行互相传递String uid, String title, String name, String time,
     //                       String comcounts, String type, String picuid, Bitmap bitmap
 

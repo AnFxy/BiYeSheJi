@@ -47,7 +47,7 @@ public class SetFragment extends Fragment implements View.OnClickListener{
     private TextView text_fakename,text_usename;
     //recycler的处理
     private RecyclerView recyclerView;
-    private String mUsename;
+    public static String mUsename;
     public SetFragment(String usename){
         this.mUsename = usename;
     }
